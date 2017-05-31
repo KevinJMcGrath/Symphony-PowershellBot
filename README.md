@@ -16,6 +16,7 @@ This bot was built in Powershell. It was designed to run on a Windows-based OS. 
 
 To install the bot:
 
+1. *IMPORTANT* Make sure the bot user is in the rooms for which messages should be collected. The bot script cannot see messages in rooms the bot user is not in.
 1. Ensure Powershell is installed on the client or server that will host the bot
 1. Make sure the host's Powershell security settings allow scripts to be run
     1. Run Powershell or Powershell ISE as an Adminstrator
@@ -50,12 +51,38 @@ To install the bot:
 }
 ```
 
+
+
 ## Starting the Bot
 
 SymphonyBot.ps1 is the executable script. 
 
 * If running the script from the Powershell ISE, open the script and press Play.
 * If running from the console, navigate to the script folder and run `.\SymphonyBot.ps1`
+
+## Usage
+
+Only a few modules are included in the alpha version of the bot. 
+
+Google Translate: 
+
+* Command: /translate "Hola. Como estas?"
+* Reply: I think you said: "Hello how are you?" (es)
+
+Echo Test:
+
+* Command: /echo Test Message
+* Reply: Test Message
+
+JIRA hashtag submission
+
+* Command: This feature does not require users to use a slash command. Instead, the bot will look for messages that have a pre-defined set of hashtags.
+* Reply: JIRA Issue: https://mycompany.atlassian.net/browse/JIRA-12345
+* Notes:
+    * The pre-defined list of hastags are: "bug","bugs","defect","defects","problem","problems","feature","features", "newfeaturerequest", "featurerequest","feature_request","newfeature","new_feature","missing","needed","required", "usability","useability","performance","unstable","awkward","feedback" 
+    * The hashtags are defined in the Get-ContainsValidHashtag function in the Parsing.psm1 module
+    * The project used for the simple JIRA submission method is defined in config.json
+    * *IMPORTANT* The JIRA submission will fail if the specified project has required fields that are not specified in the Add-DefaultJIRAIssue function in the JIRA.psm1 module.
 
 ## Caveats and Provisos
 

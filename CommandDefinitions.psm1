@@ -60,6 +60,7 @@ function Invoke-GoogleTranslate
     }
 }
 
+#IMPORTANT - Yahoo broke their finance webservice. This function will no longer work
 function Invoke-YahooQuote
 {
     param([string]$StreamId, [string]$Symbol)
