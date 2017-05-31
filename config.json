@@ -1,0 +1,23 @@
+﻿{
+    "botinfo": {
+        "botEmail": "bot.user@symphony.com",
+        "certificatePath": "C:\\Github\\Symphony-PowershellBot\\Certificate\\bot.user.p12",
+        "certificatePassword": "myB0tP4ssw0rd!"
+    },
+    "symphonyinfo": {
+        "authenticationHost": "https://mycompany-api.symphony.com",
+        "authenticationPort": "8444",
+        "apiHost": "https://mycompany.symphony.com",
+        "apiPort": "443"
+    },
+    "loggingPath": "C:\\Github\\Symphony-PowershellBot\\Logging",
+    "modules": [
+        {
+            "name": "jira",
+            "enabled": true,
+            "username": "bob.smith",  
+            "password": "jiraP4ssw0rd!",
+            "baseURL": "https://mycompany.atlassian.net"
+        }
+    ]    
+}

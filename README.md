@@ -62,7 +62,7 @@ To install the bot:
 1. The bot will attempt to re-authenticate on error a few times before giving up (to avoid spamming the endpoints). It may be useful to add monitoring to the script or an email function for notification if the script is running on a "headless" instance.
 
 
-##TODO
+## TODO
 
 1. Refactor AsyncJobs.psm1 to only import the module relevant to the command being executed
 1. Add Email module for notifications
