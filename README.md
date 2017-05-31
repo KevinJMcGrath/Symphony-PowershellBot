@@ -50,6 +50,13 @@ To install the bot:
 }
 ```
 
+## Starting the Bot
+
+SymphonyBot.ps1 is the executable script. 
+
+* If running the script from the Powershell ISE, open the script and press Play.
+* If running from the console, navigate to the script folder and run `.\SymphonyBot.ps1`
+
 ## Caveats and Provisos
 
 1. Be sure to check all values in config.json and replace any temporary placeholders with actual values.
