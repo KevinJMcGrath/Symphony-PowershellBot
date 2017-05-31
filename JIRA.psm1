@@ -11,6 +11,7 @@ function Send-SimpleJIRAIssue
     
     try
     {
+        Write-Debug "Sending Simple JIRA Issue..."
 
         $ProcessedMessage.formattedMessage = ConvertFrom-SymphonyMarkup -MessageML $ProcessedMessage.originalMessage.message -ConvertToType JIRA -userList $ProcessedMessage.users
         

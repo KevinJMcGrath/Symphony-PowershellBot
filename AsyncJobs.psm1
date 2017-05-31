@@ -1,10 +1,12 @@
 ﻿function Start-SymphonyProcessorAsync
 {
-    param([psobject]$MessageObj)
+    param([psobject]$MessageObj, [string]$ScriptPath)
 
     $outer = {
         [cmdletbinding()]
         param([hashtable] $Options)
+
+        $global:DebugPreference = "Continue"
 
         $scriptDir = $Options.ModulePath
 
@@ -30,9 +32,11 @@
     }
 
     $jobOptions = @{
-        ModulePath = $scriptDir
+        ModulePath = $ScriptPath
         MessageObj = $MessageObj
     }
+
+    Write-Host "Script directory: $ScriptPath"
 
     $fdt = Get-Date -Format FileDateTimeUniversal
     $jobParams = @{

@@ -1,6 +1,24 @@
-﻿$DebugPreference = "Continue"
+﻿$global:DebugPreference = "Continue"
 
-$scriptDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+function Get-ScriptDirectory
+{
+    $Invocation = (Get-Variable MyInvocation -Scope 1).Value;
+    if($Invocation.PSScriptRoot)
+    {
+        $Invocation.PSScriptRoot;
+    }
+    Elseif($Invocation.MyCommand.Path)
+    {
+        Split-Path $Invocation.MyCommand.Path
+    }
+    else
+    {
+        $Invocation.InvocationName.Substring(0,$Invocation.InvocationName.LastIndexOf("\"));
+    }
+}
+
+#$scriptDir = Split-Path -Path $MyInvocation.MyCommand.Definition -Parent
+$scriptDir = Get-ScriptDirectory
 
 #Importing Modules imports the code for the session, not just the script. 
 #These functions are available to the sub-modules as well
@@ -59,7 +77,7 @@ while($loopControl)
                 #not bothering, since I'm not returning data to the bot itself.
                 #$backgroundJobs += Start-SymphonyProcessorAsync -MessageDetail $messageDetail
 
-                $asyncJob = Start-SymphonyProcessorAsync -MessageObj $messageDetail
+                $asyncJob = Start-SymphonyProcessorAsync -MessageObj $messageDetail -ScriptPath $scriptDir
 
             }
         }
@@ -99,3 +117,4 @@ while($loopControl)
     #Remove jobs that are no longer running
     Get-Job | Where-Object { $_.State -inotin ("NotStarted", "Running")} | Remove-Job
 }
+

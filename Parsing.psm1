@@ -239,9 +239,10 @@ function Get-InputSecurityCheck
 {
     param([string]$input)
 
-    $output = [System.Web.AntiXss.AntiXssEncoder]::UrlEncode($input)
+    #Apparently the AntiXss class was removed from .NET 5 >(
+    $output = $input #[System.Web.AntiXss.AntiXssEncoder]::UrlEncode($input)
 
-    $isValid = ($output | Select-String "%3Cscript%3E") -eq $null
+    $isValid = ($output | Select-String "<script>") -eq $null
 
     $isValid
 }

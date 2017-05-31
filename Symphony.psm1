@@ -305,7 +305,7 @@ function Initialize-DataFeed
     
                 $dataFeedId = $resp.response.id
 
-                Write-Debug "Creating DataFeed: $dataFeedId"
+                Write-Debug "Creating DataFeed: $dataFeedId"                
 
                 $global:botSession.DataFeedId = $dataFeedId
 
@@ -373,6 +373,7 @@ function Read-DataFeed
             $lineOut += "($($messageDetail.streamId))"
 
             Write-Debug $lineOut
+            Write-Host $lineOut
         }
 
     }

@@ -14,6 +14,8 @@ function Invoke-SymphonyEcho
 {
     param([string]$StreamId, [string]$EchoMessage)
 
+    Write-Debug "Invoking echo: $EchoMessage"
+
     Add-LogEntry -source "Activity" -message "Sending Echo" -addlParams @($StreamId, $EchoMessage, $reply)
 
     Send-SymphonyMessage -streamId $StreamId -message $EchoMessage
@@ -25,6 +27,8 @@ function Invoke-GoogleTranslate
 
     try
     {
+        Write-Debug "Invoking Google Translate..."
+
         $tParam = [System.Net.WebUtility]::UrlEncode($Message) 
         $transEP = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=en&dt=t&q=$tParam"    
 
